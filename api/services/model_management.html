@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>sasctl.services.model_management &#8212; sasctl 1.4.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sasctl.services.model_publish" href="model_publish.html" />
+    <link rel="prev" title="sasctl.services.microanalytic_score" href="microanalytic_score.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-sasctl._services.model_management">
+<span id="sasctl-services-model-management"></span><h1>sasctl.services.model_management<a class="headerlink" href="#module-sasctl._services.model_management" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sasctl._services.model_management.ModelManagement">
+<em class="property">class </em><code class="sig-prename descclassname">sasctl._services.model_management.</code><code class="sig-name descname">ModelManagement</code><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sasctl._services.service.Service</span></code></p>
+<p>The Model Management API provides basic resources for monitoring
+performance, comparing models, and running workflow processes.</p>
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.create_performance_definition">
+<em class="property">classmethod </em><code class="sig-name descname">create_performance_definition</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">library_name</em>, <em class="sig-param">table_prefix</em>, <em class="sig-param">name=None</em>, <em class="sig-param">description=None</em>, <em class="sig-param">monitor_champion=False</em>, <em class="sig-param">monitor_challenger=False</em>, <em class="sig-param">max_bins=None</em>, <em class="sig-param">scoring_required=False</em>, <em class="sig-param">all_data=False</em>, <em class="sig-param">save_output=True</em>, <em class="sig-param">output_library=None</em>, <em class="sig-param">autoload_output=False</em>, <em class="sig-param">cas_server=None</em>, <em class="sig-param">trace=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement.create_performance_definition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.create_performance_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the performance task definition in the model project to
+monitor model performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The name or id of the model, or a dictionary representation of the model.</p></li>
+<li><p><strong>library_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The library containing the input data, default is ‘Public’.</p></li>
+<li><p><strong>table_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The name used for the performance data.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The name of the performance task.</p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The description of the performance task, default is ‘Performance
+monitoring for model’ + model.name.</p></li>
+<li><p><strong>monitor_champion</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Indicates to monitor the project champion model.</p></li>
+<li><p><strong>monitor_challenger</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Indicates to monitor challenger models.</p></li>
+<li><p><strong>max_bins</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The maximum bins number, Must be &gt;= 2.  Defaults to 10.</p></li>
+<li><p><strong>scoring_required</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether model scoring must be performed on the input data before
+performance results can be computed.  Should be <cite>False</cite> if target
+values are included in the <cite>table_prefix</cite> tables.</p></li>
+<li><p><strong>all_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to run the performance job against all matching data tables
+in <cite>library_name</cite> or just the new tables.  Defaults to <cite>False</cite>.</p></li>
+<li><p><strong>save_output</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to save the computed results to a table in <cite>output_library</cite>.
+Defaults to True.</p></li>
+<li><p><strong>output_library</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of a CASLIB where computed results should be saved.  Defaults to
+‘ModelPerformanceData’.</p></li>
+<li><p><strong>autoload_output</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether computed results should automatically be re-loaded
+after a CAS server restart.</p></li>
+<li><p><strong>cas_server</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The CAS Server for the monitoring task, default is ‘cas-shared-default’.</p></li>
+<li><p><strong>trace</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to enable trace messages in the SAS job log when
+executing the performance definition.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The performance task definition schema</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../sasctl.core.html#sasctl.core.RestObj" title="sasctl.core.RestObj">RestObj</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.delete_performance_definition">
+<em class="property">classmethod </em><code class="sig-name descname">delete_performance_definition</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.delete_performance_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a performance task instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.execute_model_workflow_definition">
+<em class="property">classmethod </em><code class="sig-name descname">execute_model_workflow_definition</code><span class="sig-paren">(</span><em class="sig-param">project_name</em>, <em class="sig-param">workflow_name</em>, <em class="sig-param">input=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement.execute_model_workflow_definition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.execute_model_workflow_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs specific Workflow Processes Definitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the Project that will execute workflow</p></li>
+<li><p><strong>workflow_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name or ID of an enabled workflow to execute</p></li>
+<li><p><strong>input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – Input values for the workflow for initial workflow prompt</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The executing workflow</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../sasctl.core.html#sasctl.core.RestObj" title="sasctl.core.RestObj">RestObj</a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is experimental and may be modified or removed without warning.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.execute_performance_definition">
+<em class="property">classmethod </em><code class="sig-name descname">execute_performance_definition</code><span class="sig-paren">(</span><em class="sig-param">definition</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement.execute_performance_definition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.execute_performance_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches a job to run a performance definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>definition</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The id or dictionary representation of a performance definition.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The executing job</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../sasctl.core.html#sasctl.core.RestObj" title="sasctl.core.RestObj">RestObj</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.get_performance_definition">
+<em class="property">classmethod </em><code class="sig-name descname">get_performance_definition</code><span class="sig-paren">(</span><em class="sig-param">item</em>, <em class="sig-param">refresh=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.get_performance_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a performance task instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – Name, ID, or dictionary representation of the performance task.</p></li>
+<li><p><strong>refresh</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em>) – Obtain an updated copy of the performance task.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary containing the performance task attributes or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../sasctl.core.html#sasctl.core.RestObj" title="sasctl.core.RestObj">RestObj</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>item</cite> is a complete representation of the performance task it will be
+returned unless <cite>refresh</cite> is set.  This prevents unnecessary REST
+calls when data is already available on the client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.list_model_workflow_definition">
+<em class="property">classmethod </em><code class="sig-name descname">list_model_workflow_definition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement.list_model_workflow_definition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.list_model_workflow_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all enabled Workflow Processes to execute on Model Project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The list of workflows</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../sasctl.core.html#sasctl.core.RestObj" title="sasctl.core.RestObj">RestObj</a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is experimental and may be modified or removed without warning.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.list_model_workflow_executed">
+<em class="property">classmethod </em><code class="sig-name descname">list_model_workflow_executed</code><span class="sig-paren">(</span><em class="sig-param">projectName</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement.list_model_workflow_executed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.list_model_workflow_executed" title="Permalink to this definition">¶</a></dt>
+<dd><p>List prompt Workflow Processes Definitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>projectName</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the Project list executed workflow</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of workflows associated to project</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../sasctl.core.html#sasctl.core.RestObj" title="sasctl.core.RestObj">RestObj</a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is experimental and may be modified or removed without warning.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.list_model_workflow_prompt">
+<em class="property">classmethod </em><code class="sig-name descname">list_model_workflow_prompt</code><span class="sig-paren">(</span><em class="sig-param">workflowName</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement.list_model_workflow_prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.list_model_workflow_prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>List prompt Workflow Processes Definitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workflowName</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name or ID of an enabled workflow to retrieve inputs</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The list of prompts for specific workflow</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is experimental and may be modified or removed without warning.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.list_performance_definitions">
+<em class="property">classmethod </em><code class="sig-name descname">list_performance_definitions</code><span class="sig-paren">(</span><em class="sig-param">filter=None</em>, <em class="sig-param">start=None</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.list_performance_definitions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all performance tasks available in the environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – </p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – Zero-based index of the first item to return.  Defaults to 0.</p></li>
+<li><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The maximum number of items to return.  Defaults to 20.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dictionaries containing the performance tasks.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>See the <a class="reference external" href="https://developer.sas.com/reference/filtering/">filtering</a> reference for details on the <cite>filter</cite> parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.publish_model">
+<em class="property">classmethod </em><code class="sig-name descname">publish_model</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">destination</em>, <em class="sig-param">name=None</em>, <em class="sig-param">force=False</em>, <em class="sig-param">reload_model_table=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sasctl/_services/model_management.html#ModelManagement.publish_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.publish_model" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – </p></li>
+<li><p><strong>destination</strong> – </p></li>
+<li><p><strong>name</strong> – </p></li>
+<li><p><strong>force</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to overwrite the model if it already exists in the
+publishing <cite>destination</cite>.</p></li>
+<li><p><strong>reload_model_table</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether the model table in CAS should be reloaded.  Defaults to
+False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sasctl._services.model_management.ModelManagement.update_performance_definition">
+<em class="property">classmethod </em><code class="sig-name descname">update_performance_definition</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="headerlink" href="#sasctl._services.model_management.ModelManagement.update_performance_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a performance task instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">sasctl</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../sasctl.html">sasctl package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../sasctl.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sasctl.html#submodules">Submodules</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../sasctl.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">Unreleased</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-4-4-2019-10-31">v1.4.4 (2019-10-31)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-4-3-2019-10-28">v1.4.3 (2019-10-28)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-4-2-2019-10-23">v1.4.2 (2019-10-23)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-4-1-2019-10-17">v1.4.1 (2019-10-17)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-4-2019-10-15">v1.4 (2019-10-15)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-3-2019-10-10">v1.3 (2019-10-10)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-2-5-2019-10-10">v1.2.5 (2019-10-10)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-2-4-2019-9-20">v1.2.4 (2019-9-20)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-2-3-2019-8-23">v1.2.3 (2019-8-23)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-2-2-2019-8-21">v1.2.2 (2019-8-21)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-2-1-2019-8-20">v1.2.1 (2019-8-20)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-2-0-2019-8-16">v1.2.0 (2019-8-16)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-1-4-2019-8-16">v1.1.4 (2019-8-16)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-1-3-2019-8-14">v1.1.3 (2019-8-14)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-1-2-2019-8-12">v1.1.2 (2019-8-12)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-1-1-2019-8-6">v1.1.1 (2019-8-6)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-1-0-2019-8-5">v1.1.0 (2019-8-5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-0-1-2019-07-31">v1.0.1 (2019-07-31)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v1-0-0-2019-07-24">v1.0.0 (2019-07-24)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v0-9-7-2019-07-18">v0.9.7 (2019-07-18)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#v0-9-6-2019-07-15">v0.9.6 (2019-07-15)</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../sasctl.html">sasctl package</a><ul>
+  <li><a href="../sasctl.services.html">sasctl.services package</a><ul>
+      <li>Previous: <a href="microanalytic_score.html" title="previous chapter">sasctl.services.microanalytic_score</a></li>
+      <li>Next: <a href="model_publish.html" title="next chapter">sasctl.services.model_publish</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/api/services/model_management.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
